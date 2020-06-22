@@ -103,5 +103,17 @@ export const ComboButton = styled.div`
 export const FormInput = styled.div`
   width: 744px;
   height: 154px;
-  background: #f00;
+  /* background: #f00; */
+  display: grid;
+  grid-row: 6;
+`;
+
+export const LabelInput = styled.label`
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 9px;
+  line-height: 11px;
+
+  color: #826767;
 `;

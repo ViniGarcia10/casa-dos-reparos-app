@@ -3,7 +3,7 @@ import { useField } from '@unform/core';
 
 import { InputData } from './styles';
 
-export default function Input({ name, ...rest }) {
+export default function Input({ name, width, height, marginBottom, ...rest }) {
   const inputRef = useRef(null);
   const { fieldName, registerField } = useField(name);
 
@@ -18,7 +18,11 @@ export default function Input({ name, ...rest }) {
 
   return (
     <>
-      <InputData ref={inputRef} {...rest} />
+      <InputData
+        ref={inputRef}
+        {...rest}
+        style={{ width, height, marginBottom }}
+      />
     </>
   );
 }

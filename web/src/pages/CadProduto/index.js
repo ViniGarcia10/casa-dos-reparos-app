@@ -13,6 +13,7 @@ import {
   ComboButton,
   TextBtn,
   FormInput,
+  LabelInput,
 } from './styles';
 import { MdClose, MdSave } from 'react-icons/md';
 import Input from '../../components/Form/Input';
@@ -30,11 +31,78 @@ function CadProduto() {
         <ImageProd>
           <AltImage> Imagem do Produto </AltImage>
         </ImageProd>
-        <FormInput>
-          <Form onSubmit={handleSubmit}>
-            <div>
-              <Input name="email" type="email" autoComplete="email" />
-            </div>
+
+        <Form onSubmit={handleSubmit}>
+          <FormInput>
+            <LabelInput>Descrição do Produto</LabelInput>
+            <Input
+              name="email"
+              type="email"
+              autoComplete="email"
+              width="634px"
+              height="34px"
+            />
+
+            <LabelInput>Unitário</LabelInput>
+            <select name="unit" id="unit" style={{ width: 68, height: 34 }}>
+              <option value="teste1">teste1</option>
+            </select>
+
+            <LabelInput>Preço Custo</LabelInput>
+            <Input
+              name="email"
+              type="email"
+              autoComplete="email"
+              width="225px"
+              height="34px"
+            />
+
+            <LabelInput>Preço Venda</LabelInput>
+            <Input
+              name="email"
+              type="email"
+              autoComplete="email"
+              width="226px"
+              height="34px"
+            />
+
+            <LabelInput>Margem de Lucro</LabelInput>
+            <Input
+              name="email"
+              type="email"
+              autoComplete="email"
+              width="145px"
+              height="34px"
+            />
+
+            <LabelInput>Marca</LabelInput>
+            <Input
+              name="email"
+              type="email"
+              autoComplete="email"
+              width="225px"
+              height="34px"
+            />
+
+            <LabelInput>Fornecedor</LabelInput>
+            <Input
+              name="email"
+              type="email"
+              autoComplete="email"
+              width="226px"
+              height="34px"
+            />
+
+            <LabelInput>Sobre o Produto</LabelInput>
+            <Input
+              name="email"
+              type="email"
+              autoComplete="email"
+              width="225px"
+              height="34px"
+              marginBottom="21px"
+            />
+
             <ComboButton>
               <ButtonSave>
                 <MdSave color="#fff" size={20} type="submit" />{' '}
@@ -49,8 +117,8 @@ function CadProduto() {
                 </ButtonCancel>
               </Link>
             </ComboButton>
-          </Form>
-        </FormInput>
+          </FormInput>
+        </Form>
       </Container>
     </>
   );
