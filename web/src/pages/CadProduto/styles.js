@@ -22,6 +22,8 @@ export const ImageProd = styled.div`
   border: 4px solid rgba(82, 0, 255, 0.23);
   box-sizing: border-box;
   border-radius: 4px;
+
+  margin-bottom: 20px;
 `;
 
 export const AltImage = styled.p`
@@ -98,22 +100,28 @@ export const ComboButton = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  grid-column: 1 / 5;
+  margin-top: 22px;
 `;
 
 export const FormInput = styled.div`
   width: 744px;
   height: 154px;
-  /* background: #f00; */
   display: grid;
-  grid-row: 6;
+  grid-template-columns: 160px 160px 160px 160px;
+  grid-template-rows: auto 50px 50px 50px auto;
+  grid-column-gap: 34px;
+  align-items: baseline;
 `;
 
 export const LabelInput = styled.label`
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: 300;
-  font-size: 9px;
-  line-height: 11px;
+  font-size: 13px;
+  line-height: 17px;
 
   color: #826767;
 `;
+
+export const ContainerData = styled.div``;

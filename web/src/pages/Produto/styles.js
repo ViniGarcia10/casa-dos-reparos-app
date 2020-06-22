@@ -98,6 +98,7 @@ export const ItemTitle = styled.p`
   align-items: center;
   text-align: center;
   margin-top: 4px;
+  justify-content: center;
 
   color: #000000;
 `;

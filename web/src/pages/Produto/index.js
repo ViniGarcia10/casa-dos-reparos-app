@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header';
 import { MdSearch, MdAdd, MdEdit, MdDelete } from 'react-icons/md';
+import { GiExitDoor } from 'react-icons/gi';
 import { FaFilter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -88,6 +89,21 @@ export default function CadastroProduto() {
                 <FaFilter size={30} />
               </ItemsOptionsProd>
               <ItemTitle> Filtrar </ItemTitle>
+            </ComboOptions>
+
+            <ComboOptions>
+              <Link
+                to="/"
+                style={{
+                  textDecoration: 'none',
+                  color: '#000',
+                }}
+              >
+                <ItemsOptionsProd>
+                  <GiExitDoor size={30} />
+                </ItemsOptionsProd>
+                <ItemTitle> Sair </ItemTitle>
+              </Link>
             </ComboOptions>
           </ContainerCombo>
 
