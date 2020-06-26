@@ -4,6 +4,8 @@ import DescriptionPage from '../../components/DescriptionPage';
 import { Form } from '@unform/web';
 import { Link } from 'react-router-dom';
 
+import firebase from '../../services/configFirebase';
+
 import {
   ImageProd,
   AltImage,
@@ -18,9 +20,23 @@ import {
 } from './styles';
 import { MdClose, MdSave } from 'react-icons/md';
 import Input from '../../components/Form/Input';
+import Select from '../../components/Form/Select';
 
 function handleSubmit(data) {
-  console.log(data);
+  const id = Math.floor(Math.random() * 100000);
+
+  const product = {
+    id,
+    ...data,
+  };
+
+  firebase
+    .database()
+    .ref('products')
+    .push(product)
+    .then(() => {
+      alert(`O produto foi adicionado com sucesso!`);
+    });
 }
 
 function CadProduto() {
@@ -51,7 +67,7 @@ function CadProduto() {
               style={{ width: 161, height: 34, display: 'inline-grid' }}
             >
               <LabelInput>Unitário</LabelInput>
-              <select
+              <Select
                 name="unit"
                 id="unit"
                 style={{
@@ -67,22 +83,22 @@ function CadProduto() {
                 <option value="unidade">Unidade</option>
                 <option value="kg">Kilo</option>
                 <option value="caixa">Caixa</option>
-              </select>
+              </Select>
             </ContainerData>
 
             <ContainerData style={{ width: 186, height: 34 }}>
               <LabelInput>Preço Custo</LabelInput>
-              <Input name="preco_custo" type="text" />
+              <Input name="preco_custo" type="number" />
             </ContainerData>
 
             <ContainerData style={{ width: 186, height: 34 }}>
               <LabelInput>Preço Venda</LabelInput>
-              <Input name="preco_venda" type="text" />
+              <Input name="preco_venda" type="number" />
             </ContainerData>
 
             <ContainerData style={{ width: 186, height: 34 }}>
               <LabelInput>Margem de Lucro</LabelInput>
-              <Input name="margem_lucro" type="text" />
+              <Input name="margem_lucro" type="number" />
             </ContainerData>
 
             <ContainerData

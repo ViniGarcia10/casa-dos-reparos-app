@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import { MdSearch, MdAdd, MdEdit, MdDelete } from 'react-icons/md';
 import { GiExitDoor } from 'react-icons/gi';
 import { FaFilter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { formatter } from '../../utils/FunctionFormatterMoney';
+
+import Prod1 from '../../assets/prod1.png';
+
+import DescriptionPage from '../../components/DescriptionPage';
+import TableProducts from '../../components/TableProducts';
 
 import {
   Container,
@@ -29,12 +36,16 @@ import {
   TitleDescriptionResultBig,
 } from './styles';
 
-import Prod1 from '../../assets/prod1.png';
+function Produto({ product }) {
+  const [itemSelected, setItemSelected] = useState({});
 
-import DescriptionPage from '../../components/DescriptionPage';
-import TableProducts from '../../components/TableProducts';
+  useEffect(() => {
+    const Items = product.map((prod) => prod);
+    const ItemEnd = new Object(Items[Items.length - 1]);
 
-export default function CadastroProduto() {
+    setItemSelected(ItemEnd);
+  }, [product]);
+
   return (
     <Container>
       <Header />
@@ -56,7 +67,7 @@ export default function CadastroProduto() {
           <TableProducts />
         </BoxLeft>
 
-        <BoxRight>
+        <BoxRight modeClean={Boolean(Object.keys(itemSelected).length !== 0)}>
           <ContainerCombo>
             <Link
               to="/cadProdutos"
@@ -106,68 +117,83 @@ export default function CadastroProduto() {
               </Link>
             </ComboOptions>
           </ContainerCombo>
+          {Object.keys(itemSelected).length !== 0 && (
+            <>
+              {' '}
+              <PictureProd>
+                <DetailsPicture>código {itemSelected.id}</DetailsPicture>
+                <ImageProd src={Prod1} />
+              </PictureProd>
+              <DetailsProd>
+                <DescriptionProd>{itemSelected.product}</DescriptionProd>
 
-          <PictureProd>
-            <DetailsPicture>Código 1</DetailsPicture>
-            <ImageProd src={Prod1} />
-          </PictureProd>
+                <DescriptionProdBlue>
+                  <TitleDescription>Disponiveis</TitleDescription>
+                  <TitleDescriptionResult>
+                    {itemSelected.unidades} Unidades
+                  </TitleDescriptionResult>
+                </DescriptionProdBlue>
 
-          <DetailsProd>
-            <DescriptionProd>REPARO DO CARBURADOR MS170 STIHL</DescriptionProd>
+                <DescriptionProdBlue>
+                  <TitleDescription>Preço Custo</TitleDescription>
+                  <TitleDescriptionResult color="#FFE600">
+                    {formatter.format(itemSelected.preco_custo)}
+                  </TitleDescriptionResult>
+                </DescriptionProdBlue>
 
-            <DescriptionProdBlue>
-              <TitleDescription>Disponiveis</TitleDescription>
-              <TitleDescriptionResult>30 Unidades</TitleDescriptionResult>
-            </DescriptionProdBlue>
+                <DescriptionProdBlue>
+                  <TitleDescription>Preço Venda</TitleDescription>
+                  <TitleDescriptionResult color="#01F428">
+                    {formatter.format(itemSelected.preco_venda)}
+                  </TitleDescriptionResult>
+                </DescriptionProdBlue>
 
-            <DescriptionProdBlue>
-              <TitleDescription>Preço Custo</TitleDescription>
-              <TitleDescriptionResult color="#FFE600">
-                R$20,00
-              </TitleDescriptionResult>
-            </DescriptionProdBlue>
+                <DescriptionProdBlue>
+                  <TitleDescription>Marca</TitleDescription>
+                  <TitleDescriptionResult>
+                    {itemSelected.brand}
+                  </TitleDescriptionResult>
+                </DescriptionProdBlue>
 
-            <DescriptionProdBlue>
-              <TitleDescription>Preço Venda</TitleDescription>
-              <TitleDescriptionResult color="#01F428">
-                R$28,00
-              </TitleDescriptionResult>
-            </DescriptionProdBlue>
+                <DescriptionProdBlue>
+                  <TitleDescription>Vendidos</TitleDescription>
+                  <TitleDescriptionResult>5 Unidades</TitleDescriptionResult>
+                </DescriptionProdBlue>
 
-            <DescriptionProdBlue>
-              <TitleDescription>Marca</TitleDescription>
-              <TitleDescriptionResult>Stihl</TitleDescriptionResult>
-            </DescriptionProdBlue>
+                <DescriptionProdBlue>
+                  <TitleDescription>Fornecedor</TitleDescription>
+                  <TitleDescriptionResult>
+                    {itemSelected.provider}
+                  </TitleDescriptionResult>
+                </DescriptionProdBlue>
 
-            <DescriptionProdBlue>
-              <TitleDescription>Vendidos</TitleDescription>
-              <TitleDescriptionResult>5 Unidades</TitleDescriptionResult>
-            </DescriptionProdBlue>
+                <DescriptionProdBlueBig>
+                  <TitleDescriptionBig>Sobre o Produto</TitleDescriptionBig>
+                  <TitleDescriptionResultBig>
+                    Indicado para o motor ms170 stihl.
+                  </TitleDescriptionResultBig>
+                </DescriptionProdBlueBig>
 
-            <DescriptionProdBlue>
-              <TitleDescription>Fornecedor</TitleDescription>
-              <TitleDescriptionResult>Machadão</TitleDescriptionResult>
-            </DescriptionProdBlue>
+                <DescriptionProdBlue>
+                  <TitleDescription>Margem de Lucro</TitleDescription>
+                  <TitleDescriptionResult>
+                    {itemSelected.margem_lucro}%
+                  </TitleDescriptionResult>
+                </DescriptionProdBlue>
 
-            <DescriptionProdBlueBig>
-              <TitleDescriptionBig>Sobre o Produto</TitleDescriptionBig>
-              <TitleDescriptionResultBig>
-                Indicado para o motor ms170 stihl.
-              </TitleDescriptionResultBig>
-            </DescriptionProdBlueBig>
-
-            <DescriptionProdBlue>
-              <TitleDescription>Margem de Lucro</TitleDescription>
-              <TitleDescriptionResult>40%</TitleDescriptionResult>
-            </DescriptionProdBlue>
-
-            <DescriptionProdBlue>
-              <TitleDescription>Ultima Venda</TitleDescription>
-              <TitleDescriptionResult>10/06/2020</TitleDescriptionResult>
-            </DescriptionProdBlue>
-          </DetailsProd>
+                <DescriptionProdBlue disable={true}>
+                  <TitleDescription>Ultima Venda</TitleDescription>
+                  {/* <TitleDescriptionResult>10/06/2020</TitleDescriptionResult> */}
+                </DescriptionProdBlue>
+              </DetailsProd>
+            </>
+          )}
         </BoxRight>
       </ContainerBox>
     </Container>
   );
 }
+
+export default connect((state) => ({
+  product: state.tableProducts,
+}))(Produto);

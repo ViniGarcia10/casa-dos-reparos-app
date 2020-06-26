@@ -44,8 +44,9 @@ export const BoxLeft = styled.div`
 `;
 
 export const BoxRight = styled.div`
-  display: flex;
+  display: ${(props) => (props.modeClean ? 'flex' : 'block')};
   width: 553px;
+  margin-top: ${(props) => (props.modeClean ? '0px' : '46px')};
   /* background: #f00; */
   flex-direction: column;
   align-items: flex-start;
@@ -176,7 +177,7 @@ export const DescriptionProd = styled.p`
 export const DescriptionProdBlue = styled.div`
   width: 173px;
   height: 45.84px;
-  background: #3899ec;
+  background: ${(props) => (props.disable ? '#53585d' : '#3899ec')};
   border-radius: 22px;
   display: flex;
   justify-content: space-evenly;
